@@ -9,7 +9,7 @@ public class NtimesNames {
         int times = scan.nextInt();
         printName(1,times);
 
-        1
+        
     }
 
     public static void printName(int i,int n){
