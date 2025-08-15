@@ -1,3 +1,5 @@
 #ignore files
+other/
 Switch.class
 SwitchExample.class
+*.class
