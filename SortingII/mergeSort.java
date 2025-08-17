@@ -7,6 +7,6 @@ public class mergeSort {
 
     // public int[] mergeSort(int[] nums) {
 
- // will continue....
+ // will continue.... ..
     // }
 }
