@@ -11,7 +11,7 @@ class RunSorting{
 
         // System.out.println("Bubble sort: "+Arrays.toString(s.bubbleSort(nums)));
 
-        int[] arr1 = {2,3,5,7,1,2,8,9,10,4};
+        int[] arr1 = {3,2,7,5,10,1};
         System.out.println("\nunsorted Array: "+Arrays.toString(arr1));
        // System.out.println("Insertion sort: "+Arrays.toString(s.insertionSort(arr1)));
         System.out.println("Insertion sort 2: "+Arrays.toString(s.insertionsSort2(arr1)));
