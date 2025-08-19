@@ -1,12 +1,20 @@
-package SortingII;
+// package SortingII;
 
-public class mergeSort {
-    public static void main(String[] args) {
+// public class mergeSort {
+//     public static void main(String[] args) {
         
-    }
+//     }
 
-    // public int[] mergeSort(int[] nums) {
+//   // public static int[] mergeSort(int[] nums) {
+//         // return mergeSorthelper(nums, 0, nums.length);
 
- // will continue.... ..
-    // }
-}
+
+//    // }
+
+//     // public static int[] mergeSorthelper(int[] nums, int low, int high){
+//     //     int mid = (int)(low+high) / 2;
+
+
+//     }
+
+// }
