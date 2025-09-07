@@ -1,17 +1,14 @@
-package ArraySolvingProblems.Medium;
+package ArrayProblems.Medium;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 public class MediumLevelProblems {
     public static void main(String[] args) {
         Solution s = new Solution();
-        int[] arr = {7, 0, 0, 1, 7, 7, 2, 7, 7};
-        System.out.print(s.majorityElement(arr));
-//        for(int i:arr){
-//            System.out.print(i +" ");
-//        }
+        int[] arr = {3,1,-2,-5,2,-4};
+        System.out.println("The maximum profit: " + Arrays.toString(s.rearrangeArray(arr)));
+
 
 
 
@@ -19,6 +16,96 @@ public class MediumLevelProblems {
 }
 
  class Solution{
+
+     public int[] rearrangeArray(int[] nums) {
+         int[] arr = new int[nums.length];
+         int posIndex = 0;
+         int negIndex = 1;
+         for(int i=0;i<nums.length;i++){
+             if(nums[i]>0){
+                 arr[posIndex] = nums[i];
+                 posIndex += 2;
+             }
+             else{
+                 arr[negIndex] = nums[i];
+                 negIndex += 2;
+             }
+         }
+         return arr;
+
+//         ArrayList<Integer> pos = new ArrayList<>();
+//         ArrayList<Integer> neg = new ArrayList<>();
+//
+//         for(int i =0;i<nums.length;i++){
+//             if(nums[i]>0) pos.add(nums[i]);
+//             else neg.add(nums[i]);
+//         }
+//
+//         for(int i=0;i<(nums.length)/2;i++){
+//             nums[2 * i] = pos.get(i);
+//             nums[2 * i + 1] = neg.get(i);
+//         }
+//         return nums;
+
+     }
+
+     public int maxProfit(int[] prices) {
+
+         int minPrice = Integer.MAX_VALUE;
+         int profit  =0;
+         for(int i=0;i<prices.length;i++){
+             if(minPrice>prices[i]){
+                 minPrice = prices[i];
+             }
+             else if((prices[i] - minPrice > profit)){
+                 profit = prices[i] - minPrice;
+             }
+         }
+         return profit;
+//         int max =0;
+//         for(int i=0;i<prices.length;i++){
+//             for(int j=i+1;j<prices.length;j++){
+//                 if(prices[i]<prices[j]){
+//                     max = Math.max(max, prices[j] - prices[i]);
+//                 }
+//             }
+//         }
+//
+//         return max;
+
+     }
+
+     public int maxSubArray(int[] nums) {
+         if (nums.length == 0) return nums[0];
+         int max = Integer.MIN_VALUE;
+         int sum = 0;
+
+         int start = 0;
+         int arrStart = -1;
+         int arrEnd = -1;
+         for (int i = 0; i < nums.length; i++) {
+             sum += nums[i];
+
+             if (sum == 0) start = i;
+             if (max < sum) {
+                 max = sum;
+                 arrStart = start;
+                 arrEnd = i;
+             }
+
+             if (sum < 0) {
+                 sum = 0;
+             }
+         }
+
+         System.out.print("The subArray is: [");
+         for (int i = arrStart; i < arrEnd; i++) {
+             System.out.print(nums[i] + " ");
+         }
+         System.out.print("]\n");
+         return max;
+     }
+
      public int majorityElement(int[] nums) {
          // moose voting algorithm
          int element =0;
