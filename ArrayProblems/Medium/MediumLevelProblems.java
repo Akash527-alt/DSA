@@ -1,13 +1,16 @@
 package ArrayProblems.Medium;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class MediumLevelProblems {
     public static void main(String[] args) {
         Solution s = new Solution();
-        int[] arr = {3,1,-2,-5,2,-4};
-        System.out.println("The maximum profit: " + Arrays.toString(s.rearrangeArray(arr)));
+        int[][] arr = {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
+
+
+
+        s.setZeroes2(arr);
+        System.out.println(Arrays.deepToString(arr));
 
 
 
@@ -16,6 +19,235 @@ public class MediumLevelProblems {
 }
 
  class Solution{
+
+    public void setZeroes2(int[][] matrix){    // still wrong need to be correct
+        int row = matrix.length;
+        int col = matrix[0].length;
+        //int[] r = new int[row];  --> matrix[...][0]
+        //int[] c  = new int[col];  --> matrix[0][...]
+
+        int col0 = 0;
+        // traverse the matrix and mark 1st row and col accordingly
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(matrix[i][j] == 0){
+                    // mark i-th row
+                    matrix[i][0] = 0;
+                    if(j != 0){
+                        matrix[0][j] = 0;
+                    }
+                    else{
+                        col0 = 0;
+                    }
+                }
+            }
+        }
+
+        // mark with 0 from (1,1) to (n-1,m-1)
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(matrix[i][j] != 0){
+                    if(matrix[i][0] == 0 || matrix[0][j] == 0){
+                        matrix[i][j] =0;
+                    }
+
+                }
+            }
+        }
+
+        if(matrix[0][0] ==0){
+            for(int j=0;j<col;j++){
+                matrix[0][j] =0;
+            }
+        }
+
+        if(col0 == 0 ){
+            for(int i=0;i<row;i++){
+                matrix[i][0] = 0;
+            }
+        }
+
+
+     }
+
+     public void setZeroes(int[][] matrix) {
+         int row = matrix.length;
+         int col = matrix[0].length;
+         int[] r = new int[row];
+         int[] c = new int[col];
+         Arrays.fill(r,0);
+         Arrays.fill(c,0);
+
+         for(int i=0;i<row;i++){
+             for(int j=0;j<col;j++){
+                 if(matrix[i][j] == 0){
+                     r[i] = -1;
+                     c[j] = -1;
+                 }
+             }
+         }
+
+         for(int i=0;i<row;i++){
+             for(int j=0;j<col;j++){
+                 if(r[i] == -1 || c[j] == -1){
+                     matrix[i][j] = 0;
+                 }
+             }
+         }
+
+
+//         for(int i=0;i<row;i++) {
+//             for (int j = 0; j < col; j++) {
+//                 if (matrix[i][j] == 0) {
+//                     markRow(matrix,i,row);
+//                     markCol(matrix,j,row);
+//                 }
+//             }
+//         }
+//
+//         for(int i=0;i<row;i++) {
+//             for(int j=0;j<col;j++) {
+//                 if(matrix[i][j]==-1) {
+//                     matrix[i][j]=0;
+//                 }
+//             }
+//         }
+
+     }
+//     private void markRow(int[][] arr,int i,int n){
+//         for(int j=0;j<n;j++){
+//             if(arr[i][j]!=0){
+//                 arr[i][j] = -1;
+//             }
+//         }
+//     }
+//     private void markCol(int[][] arr,int j,int m){
+//         for(int i=0;i<m;i++){
+//             if(arr[i][j] != 0){
+//                 arr[i][j] = -1;
+//             }
+//         }
+//     }
+
+     public int longestConsecutive(int[] nums) {
+         int longest = 0;
+         Set<Integer> set = new HashSet<>();
+
+         for(int num : nums){
+             set.add(num);
+         }
+         System.out.println(set);
+
+         for(int num : set){
+             int count =1;
+
+             if(!set.contains(num-1)){
+                 while(set.contains(num+1)){
+                     num++;
+                     count++;
+                 }
+                 longest = Math.max(longest,count);
+             }
+
+         }
+
+//         Arrays.sort(nums);
+//         int lastSmaller = Integer.MIN_VALUE;
+//         int count = 0;
+//         for (int i = 0; i < nums.length; i++) {
+//             if(nums[i]-1 == lastSmaller){
+//                 count++;
+//                 lastSmaller = nums[i];
+//             }
+//             else if(nums[i] != lastSmaller){
+//                 count = 1;
+//                 lastSmaller = nums[i];
+//             }
+//            longest = Math.max(count,longest);
+//         }
+         return longest;
+     }
+
+     private boolean linearSearch(int[] nums, int target){
+         for(int i=0;i<nums.length;i++){
+             if (nums[i] == target) return true;
+         }
+         return false;
+     }
+
+     public List<Integer> leaders(int[] nums) {
+         List<Integer> list = new ArrayList<>();
+         int maxi = nums[nums.length-1];
+         list.add(nums[nums.length-1]);
+         for(int i=nums.length-2;i>=0;i--){
+             if(nums[i]>maxi){
+                 list.add(nums[i]);
+                 maxi = nums[i];
+             }
+         }
+         Collections.reverse(list);
+
+
+//         for(int i=0;i<nums.length;i++){
+//             boolean leader = true;
+//             for(int j=i+1;j<nums.length;j++){
+//                 if(nums[i]<nums[j]){
+//                     leader = false;
+//                     break;
+//                 }
+//
+//             }
+//             if(leader != false){
+//                 list.add(nums[i]);
+//             }
+//         }
+
+         return list;
+     }
+
+     public void nextPermutation(int[] nums) {
+         int n = nums.length;
+         int index = -1;
+         for(int i=n-2;i>=0;i--){
+             if(nums[i]<nums[i+1]){
+                 index = i;
+                 break;
+             }
+         }
+
+         if(index == -1){
+             reverse(nums,0);
+         }
+         else {
+             for (int i = n - 1; i >= index; i--) {
+                 if (nums[i] > nums[index]) {
+                     int temp = nums[i];
+                     nums[i] = nums[index];
+                     nums[index] = temp;
+                     System.out.println(Arrays.toString(nums));
+                     break;
+                 }
+             }
+             reverse(nums,index+1);
+
+         }
+
+     }
+     void reverse(int[] nums, int start){
+         int i = start;
+         int j = nums.length -1;
+         while(i<j){
+             swap(nums, i, j);
+             i++;
+             j--;
+
+         }
+     }
+     void swap(int[] nums, int i, int j){
+         int temp = nums[i];
+         nums[i] = nums[j];
+         nums[j] = temp;
+     }
 
      public int[] rearrangeArray(int[] nums) {
          int[] arr = new int[nums.length];
