@@ -5,12 +5,10 @@ import java.util.*;
 public class MediumLevelProblems {
     public static void main(String[] args) {
         Solution s = new Solution();
-        int[][] arr = {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
+        int[][] arr = {{1,2,3},{4,5,6},{7,8,9}};
 
-
-
-        s.setZeroes2(arr);
-        System.out.println(Arrays.deepToString(arr));
+        List<Integer> list = s.spiralOrder(arr);
+        System.out.println(list);
 
 
 
@@ -19,6 +17,43 @@ public class MediumLevelProblems {
 }
 
  class Solution{
+
+
+     public List<Integer> spiralOrder(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        List<Integer> result = new ArrayList<>();
+        int top = 0, bottom = row -1;
+        int left = 0, right = col-1;
+
+        while(left<=right && top<=bottom) {
+            for (int i = left; i <= right; i++) {
+                result.add(matrix[top][i]);
+            }
+            top++;
+
+            for (int i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
+            }
+            right--;
+
+            if(top<=bottom) {
+                for (int i = right; i >= left; i--) {
+                    result.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+
+            if(left<=right) {
+                for (int i = bottom; i >= top; i--) {
+                    result.add(matrix[i][left]);
+                }
+                left++;
+            }
+
+        }
+        return result;
+     }
 
     public void setZeroes2(int[][] matrix){    // still wrong need to be correct
         int row = matrix.length;
