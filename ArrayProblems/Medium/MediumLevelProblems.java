@@ -5,10 +5,10 @@ import java.util.*;
 public class MediumLevelProblems {
     public static void main(String[] args) {
         Solution s = new Solution();
-        int[][] arr = {{1,2,3},{4,5,6},{7,8,9}};
+        int[] arr = {1,2,1,2,1};
 
-        List<Integer> list = s.spiralOrder(arr);
-        System.out.println(list);
+        int ans = s.subarraySum(arr,3);
+        System.out.println(ans);
 
 
 
@@ -18,6 +18,34 @@ public class MediumLevelProblems {
 
  class Solution{
 
+     public int subarraySum(int[] nums, int k) {
+         Map<Integer, Integer> map  = new HashMap<>();
+         int count =0;
+         int preSum =0;
+         map.put(0,1);
+         for(int i=0;i<nums.length;i++){
+             preSum += nums[i];
+             int previous = preSum -k;
+
+             count += map.getOrDefault(previous,0);
+             map.put(preSum, map.getOrDefault(preSum,0) +1);
+
+         }
+
+
+//         for(int i=0;i<nums.length;i++){
+//             int sum =0;
+//             for(int j=i;j<nums.length;j++){
+//                 sum += nums[j];
+//
+//                 if(sum == k){
+//                     count++;
+//                 }
+//             }
+//         }
+         return count;
+
+     }
 
      public List<Integer> spiralOrder(int[][] matrix) {
         int row = matrix.length;
