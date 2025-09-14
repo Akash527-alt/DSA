@@ -23,6 +23,7 @@ class Solution {
         return ans;
     }
 
+
     public List<Integer> nthRowOfPascalTrianlge(int rowNumber){
         List<Integer> ansRow = new ArrayList<>();
         int ans =1;
