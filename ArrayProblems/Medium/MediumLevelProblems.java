@@ -5,12 +5,9 @@ import java.util.*;
 public class MediumLevelProblems {
     public static void main(String[] args) {
         Solution s = new Solution();
-        int[] arr = {1,2,1,2,1};
+        int[] arr = {2, 3, 5, -2, 7, -4};
 
-        int ans = s.subarraySum(arr,3);
-        System.out.println(ans);
-
-
+        System.out.println(s.maxSubArray(arr));
 
 
     }
@@ -83,7 +80,7 @@ public class MediumLevelProblems {
         return result;
      }
 
-    public void setZeroes2(int[][] matrix){    // still wrong need to be correct
+    public void setZeroes2(int[][] matrix){    // still wrong need to be corrected
         int row = matrix.length;
         int col = matrix[0].length;
         //int[] r = new int[row];  --> matrix[...][0]
@@ -381,7 +378,7 @@ public class MediumLevelProblems {
          for (int i = 0; i < nums.length; i++) {
              sum += nums[i];
 
-             if (sum == 0) start = i;
+             if (sum <= 0 ) start = i;
              if (max < sum) {
                  max = sum;
                  arrStart = start;
@@ -394,7 +391,7 @@ public class MediumLevelProblems {
          }
 
          System.out.print("The subArray is: [");
-         for (int i = arrStart; i < arrEnd; i++) {
+         for (int i = arrStart; i <= arrEnd; i++) {
              System.out.print(nums[i] + " ");
          }
          System.out.print("]\n");
